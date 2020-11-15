@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "983481983642",
+    "firebase_url": "https://picearn-4e93b.firebaseio.com",
+    "project_id": "picearn-4e93b",
+    "storage_bucket": "picearn-4e93b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:983481983642:android:3a533b3fa130853a197523",
+        "android_client_info": {
+          "package_name": "com.example.picearn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "983481983642-p5m1o15v7mqu8seunteqjo1p6u4q6gpd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGUYjnp8AkiQAXURi9-U_RVpoQf7MXCX0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "983481983642-p5m1o15v7mqu8seunteqjo1p6u4q6gpd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
