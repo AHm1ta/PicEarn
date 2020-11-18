@@ -13,25 +13,13 @@
         android:background="@color/appbar"
         android:orientation="horizontal"
         tools:ignore="MissingConstraints">
-
         <ImageView
-            android:id="@+id/logo"
-            android:layout_width="@dimen/_25sdp"
-            android:layout_height="@dimen/_25sdp"
-            android:layout_alignParentStart="true"
-            android:layout_margin="@dimen/_5sdp"
-            android:src="@drawable/ic_camera" />
-
-        <TextView
             android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_centerVertical="true"
             android:layout_gravity="center"
-            android:fontFamily="@font/lobster"
-            android:text="Instagram"
-            android:textColor="#fff"
-            android:textSize="@dimen/_18ssp" />
+          android:src="@drawable/name" />
 
         <ImageView
             android:id="@+id/msg"
@@ -39,7 +27,8 @@
             android:layout_height="@dimen/_25sdp"
             android:layout_alignParentEnd="true"
             android:layout_margin="@dimen/_5sdp"
-            android:src="@drawable/ic_msg" />
+            android:src="@drawable/ic_share"
+            android:layout_alignParentRight="true" />
     </RelativeLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -50,16 +39,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/grey"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView2"

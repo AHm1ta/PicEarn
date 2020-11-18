@@ -1,7 +1,11 @@
-package com.example.instagramclone.Adapter;
+package com.example.picearn.Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.drawable.AnimatedVectorDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,12 +14,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.graphics.drawable.AnimatedStateListDrawableCompat;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
 
 import com.bumptech.glide.Glide;
-import com.example.instagramclone.Model.Post;
-import com.example.instagramclone.Model.User;
-import com.example.instagramclone.R;
+import com.example.picearn.CommentActivity;
+import com.example.picearn.Model.Post;
+import com.example.picearn.Model.User;
+import com.example.picearn.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -25,6 +33,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     Context context;
@@ -49,26 +59,41 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
         firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
         final Post post= postList.get(position);
-        Glide.with(context).load(post.getPostImage()).into(holder.img);
+        Glide.with(context).load(post.getPostImage()).into(holder.postedImage);
 
         if (post.getDescription().equals("")){
-            holder.description.setVisibility(View.GONE);
+            holder.postCaption.setVisibility(View.GONE);
         }else{
-            holder.description.setVisibility(View.VISIBLE);
-            holder.description.setText(post.getDescription());
+            holder.postCaption.setVisibility(View.VISIBLE);
+            holder.postCaption.setText(post.getDescription());
         }
 
-        publisherInfo(holder.profile,holder.username,holder.publisher,post.getPublisher());
-        isLike(post.getPostId(),holder.like);
-        noLike(holder.count, post.getPostId());
+        PublisherInfo(holder.proPic, (CircleImageView) holder.proPicCmmnt, holder.userNamePost, post.getPublisher());
+        isLiked(post.getPostId(),holder.like);
+        noLikes(holder.likeCount, post.getPostId());
+        getComments(post.getPostId(), holder.addCommnt);
+//        holder.proPicCmmnt.setImageResource(images[position]);
 
-        holder.img.setOnClickListener(new DoubleClickListener() {
+        final Drawable drawable = holder.likeAnimation.getDrawable();
+
+        holder.postedImage.setOnClickListener(new DoubleClickListener(500) {
+            AnimatedVectorDrawableCompat avd;
+            AnimatedVectorDrawable avd2;
+
+            @SuppressLint("NewApi")
             @Override
             public void onDoubleClick() {
-                if (holder.like.getTag().equals("like")) {
-                    FirebaseDatabase.getInstance().getReference().child("Likes").child(post.getPostId())
-                            .child(firebaseUser.getUid()).setValue(true);
-
+                if(holder.like.getTag().equals("like")){
+                    FirebaseDatabase.getInstance().getReference().child("Likes").child(post.getPostId()).child(firebaseUser.getUid())
+                            .setValue(true);
+                }
+                holder.likeAnimation.setAlpha(0.70f);
+                if(drawable instanceof AnimatedStateListDrawableCompat){
+                    avd = (AnimatedVectorDrawableCompat) drawable;
+                    avd.start();
+                }else if(drawable instanceof AnimatedVectorDrawable){
+                    avd2 = (AnimatedVectorDrawable) drawable;
+                    avd2.start();
                 }
             }
         });
@@ -85,6 +110,16 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                         }
                     }
                 });
+        holder.addCommnt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CommentActivity.class);
+                intent.putExtra("PostId", post.getPostId());
+                intent.putExtra("PublisherId", post.getPublisher());
+                context.startActivity(intent);
+            }
+        });
+
 
     }
 
@@ -94,81 +129,109 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView profile,img,like,comment,share,save;
-        TextView username, count,publisher,description;
+        TextView userNamePost;
+        TextView postCaption;
+        TextView addCommnt;
+        ImageView postedImage, proPic, proPicCmmnt, likeAnimation;
+        ImageView like;
+        TextView likeCount;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            profile=itemView.findViewById(R.id.profile_pic);
-            img= itemView.findViewById(R.id.image);
-            like=itemView.findViewById(R.id.like);
-            comment=itemView.findViewById(R.id.comment);
-            share=itemView.findViewById(R.id.share);
-            save=itemView.findViewById(R.id.save);
-            username=itemView.findViewById(R.id.username);
-            count=itemView.findViewById(R.id.like_count);
-            publisher=itemView.findViewById(R.id.publisher);
-            description=itemView.findViewById(R.id.description_id);
+            proPicCmmnt = itemView.findViewById(R.id.proPicCmmnt);
+            proPic = itemView.findViewById(R.id.proPic);
+            like = itemView.findViewById(R.id.like);
+            addCommnt = itemView.findViewById(R.id.addCommnt);
+            userNamePost = itemView.findViewById(R.id.userIdPost);
+            postCaption = itemView.findViewById(R.id.postCaption);
+            postedImage = itemView.findViewById(R.id.postedImage);
+            likeCount = itemView.findViewById(R.id.likeCount);
+            likeAnimation = itemView.findViewById(R.id.likeAnimation);
 
         }
     }
+    private void getComments(String postId, TextView comments){
 
-    private void isLike(String postId, final ImageView imageView ){
-        final FirebaseUser firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("Likes").child(postId);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Comments").child(postId);
+
         reference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child(firebaseUser.getUid()).exists()){
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                comments.setText("See all " + snapshot.getChildrenCount() + " comments");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+    private void isLiked(String PostId, ImageView imageView){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
+                .child("Likes")
+                .child(PostId);
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.child(firebaseUser.getUid()).exists()){
                     imageView.setImageResource(R.drawable.ic_like);
-                    imageView.setTag("liked");
-                }else{
-                    imageView.setImageResource(R.drawable.ic_favorite);
+                    imageView.setTag("Liked");
+                } else{
+                    imageView.setImageResource(R.drawable.ic_anim_like);
                     imageView.setTag("like");
                 }
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
     }
 
-    private void noLike(final TextView likes, String postId){
-        DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("Likes").child(postId);
+    private void noLikes(TextView likes, String postId){
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Likes").child(postId);
         reference.addValueEventListener(new ValueEventListener() {
             @SuppressLint("SetTextI18n")
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                likes.setText(dataSnapshot.getChildrenCount()+" likes");
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                likes.setText(snapshot.getChildrenCount()+ " likes");
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
 
     }
 
-    private void publisherInfo(final ImageView profile, final TextView username, final TextView publisher, final String userid){
-        DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Users").child(userid);
+    public void PublisherInfo(final ImageView imageProfile, final CircleImageView proPicCmmnt, final TextView textView, String Id){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(Id);
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                User user=dataSnapshot.getValue(User.class);
-                Glide.with(context).load(user.getImageurl()).into(profile);
-                username.setText(user.getUsername());
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
+                Glide.with(context).load(user.getImageurl()).into(imageProfile);
+                Glide.with(context).load(user.getImageurl()).into(proPicCmmnt);
+                textView.setText(user.getUsername());
+
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError error) {
+
+
 
             }
         });
     }
+
     public abstract class DoubleClickListener implements View.OnClickListener {
 
         // The time in which the second tap should be done in order to qualify as

@@ -6,38 +6,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/gradient2"
+    android:background="@color/appbar"
     tools:context=".RegisterActivity">
 
-    <TextView
+    <ImageView
         android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_40sdp"
         android:layout_marginTop="@dimen/_80sdp"
-        android:textColor="#fff"
-        android:textSize="@dimen/_25ssp"
-        android:fontFamily="@font/lobster"
-        android:text="Instagram"
+       android:src="@drawable/name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <EditText
         android:id="@+id/name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_25sdp"
-        android:textColor="#fff"
-        android:background="@drawable/et_bg"
         android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:background="@color/white"
         android:hint="Name"
         android:padding="@dimen/_10sdp"
-        android:textColorHint="@color/login_form_details"
+        android:textColor="#000"
+        android:textColorHint="@color/grey"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
-
 
     <EditText
         android:id="@+id/email"
@@ -46,7 +43,7 @@
         android:layout_marginTop="@dimen/_25sdp"
         android:background="@drawable/et_bg"
         android:layout_marginHorizontal="@dimen/_20sdp"
-        android:textColor="#fff"
+        android:textColor="#000"
         android:hint="@string/email_address"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +51,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name"
         android:padding="@dimen/_10sdp"
-        android:textColorHint="@color/login_form_details" />
+        android:textColorHint="@color/grey" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layout"
@@ -63,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_15sdp"
         app:hintEnabled="false"
-        android:textColorHint="@color/login_form_details"
+        android:textColorHint="@color/grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email" >
@@ -77,8 +74,8 @@
             android:hint="@string/password"
             android:inputType="textPassword"
             android:padding="@dimen/_10sdp"
-            android:textColor="#fff"
-            android:textColorHint="#fff" />
+            android:textColor="#000"
+            android:textColorHint="@color/grey" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
@@ -100,7 +97,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/_15ssp"
             android:text="Gender"
-            android:textColor="@color/login_form_details" />
+            android:textColor="@color/grey" />
 
         <RadioGroup
             android:id="@+id/gender_id"
@@ -114,14 +111,14 @@
                 android:text="Male"
                 android:padding="@dimen/_5sdp"
                 android:checked="true"
-                android:textColor="@color/login_form_details"
+                android:textColor="@color/grey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <RadioButton
                 android:id="@+id/female"
                 android:text="Female"
                 android:padding="@dimen/_5sdp"
-                android:textColor="@color/login_form_details"
+                android:textColor="@color/grey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </RadioGroup>
@@ -132,10 +129,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_15sdp"
         android:layout_marginHorizontal="@dimen/_20sdp"
-        android:background="@drawable/gradient3"
         android:text="Register"
+        android:backgroundTint="@color/white"
         android:textAllCaps="false"
-        android:textColor="@color/login_form_details"
+        android:textColor="@color/grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/gender_layout" />

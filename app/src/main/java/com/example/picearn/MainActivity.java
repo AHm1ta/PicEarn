@@ -1,11 +1,14 @@
-package com.example.picearn.;
+package com.example.picearn;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -36,9 +39,12 @@ public class  MainActivity extends AppCompatActivity {
     DatabaseReference reference;
     ProgressDialog pd;
 
+    @SuppressLint("ResourceAsColor")
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setStatusBarColor(R.color.appbar);
         setContentView(R.layout.activity_main);
 
         email=findViewById(R.id.username);

@@ -1,4 +1,4 @@
-package com.example.instagramclone.Fragment;
+package com.example.picearn.Fragment;
 import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
@@ -15,9 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import com.example.instagramclone.Adapter.SearchAdapter;
-import com.example.instagramclone.Model.User;
-import com.example.instagramclone.R;
+import com.example.picearn.Adapter.SearchAdapter;
+import com.example.picearn.Model.User;
+import com.example.picearn.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

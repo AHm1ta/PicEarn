@@ -1,4 +1,4 @@
-package com.example.instagramclone.Model;
+package com.example.picearn.Model;
 
 public class User {
     private String id;

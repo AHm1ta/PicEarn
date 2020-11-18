@@ -6,18 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/gradient2"
+    android:background="@color/appbar"
     tools:context=".MainActivity">
 
-    <TextView
+    <ImageView
         android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_40sdp"
         android:layout_marginTop="@dimen/_80sdp"
-        android:textColor="#fff"
-        android:textSize="@dimen/_25ssp"
-        android:fontFamily="@font/lobster"
-        android:text="Instagram"
+        android:src="@drawable/name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,8 +27,9 @@
         android:background="@drawable/et_bg"
         android:layout_marginHorizontal="@dimen/_20sdp"
         android:hint="Email"
+        android:textColorHint="@color/grey"
         android:inputType="textEmailAddress"
-        android:textColor="#fff"
+        android:textColor="#000"
         android:padding="@dimen/_10sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -52,10 +50,10 @@
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColor="#fff"
+            android:textColor="#000"
             android:hint="@string/password"
             android:inputType="textPassword"
-            android:textColorHint="#fff"
+            android:textColorHint="@color/grey"
             android:background="@drawable/et_bg"
             android:layout_marginHorizontal="@dimen/_20sdp"
             android:padding="@dimen/_10sdp"/>
@@ -67,8 +65,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_15sdp"
         android:layout_marginHorizontal="@dimen/_20sdp"
-        android:backgroundTint="@color/colorAccent"
-        android:textColor="#fff"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/grey"
         android:text="@string/login_now"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
@@ -80,71 +78,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_15sdp"
-        android:text="@string/don_t_remember_password"
+        android:text="Forgot Password"
+        android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_login" />
-
-
-    <LinearLayout
-        android:id="@+id/fb_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/footer_line"
-        app:layout_constraintTop_toBottomOf="@+id/or">
-
-        <ImageView
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"
-            android:src="@drawable/ic_icons8_facebook"
-            />
-
-        <TextView
-            android:id="@+id/facebook_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/sign_in_with_facebook"
-            android:layout_marginHorizontal="@dimen/_5sdp"
-            android:textStyle="bold"/>
-
-    </LinearLayout>
-
-
-
-    <View
-        android:id="@+id/line1"
-        android:layout_width="@dimen/_100sdp"
-        android:layout_height="1dp"
-        android:background="@color/login_form_details_medium"
-        app:layout_constraintBottom_toBottomOf="@+id/or"
-        app:layout_constraintEnd_toStartOf="@+id/or"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/or" />
-
-    <TextView
-        android:id="@+id/or"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/or"
-        android:layout_marginHorizontal="@dimen/_15sdp"
-        android:textColor="@color/login_form_details"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/fb_login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forgot_password" />
-    <View
-        android:id="@+id/line2"
-        android:layout_width="@dimen/_100sdp"
-        android:layout_height="1dp"
-        android:background="@color/login_form_details_medium"
-        app:layout_constraintBottom_toBottomOf="@+id/or"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/or"
-        app:layout_constraintTop_toTopOf="@+id/or" />
 
 
     <View
@@ -161,7 +100,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/don_t_have_an_account"
-        android:textColor="@color/login_form_details"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/white"
     tools:context=".Fragment.SearchFragment">
     <RelativeLayout
         android:id="@+id/search_layout"
@@ -19,12 +19,13 @@
             android:src="@drawable/ic_search" />
         <EditText
             android:id="@+id/searchBar"
-            android:textColor="#fff"
+            android:textColor="#000"
             android:hint="Search here....."
-            android:textColorHint="#fff"
+            android:textColorHint="@color/grey"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/serachIcon"/>
+            android:layout_toEndOf="@id/serachIcon"
+            android:layout_toRightOf="@id/serachIcon" />
     </RelativeLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView3"

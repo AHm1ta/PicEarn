@@ -1,4 +1,4 @@
-package com.example.instagramclone.Fragment;
+package com.example.picearn.Fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -14,9 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -25,16 +22,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.instagramclone.Adapter.PhotosAdapter;
-import com.example.instagramclone.EditProfileActivity;
-import com.example.instagramclone.HomeActivity;
-import com.example.instagramclone.MainActivity;
-import com.example.instagramclone.Model.Post;
-import com.example.instagramclone.Model.User;
-import com.example.instagramclone.PostActivity;
-import com.example.instagramclone.R;
-import com.example.instagramclone.RegisterActivity;
-import com.google.android.material.navigation.NavigationView;
+import com.example.picearn.Adapter.PhotosAdapter;
+import com.example.picearn.EditProfileActivity;
+import com.example.picearn.MainActivity;
+import com.example.picearn.Model.Post;
+import com.example.picearn.Model.User;
+import com.example.picearn.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -44,9 +37,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+
+import retrofit2.http.POST;
 
 public class ProfileFragment extends Fragment {
     FirebaseUser firebaseUser;

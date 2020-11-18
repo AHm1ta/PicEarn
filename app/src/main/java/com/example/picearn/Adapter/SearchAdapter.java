@@ -1,4 +1,4 @@
-package com.example.instagramclone.Adapter;
+package com.example.picearn.Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -13,9 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.instagramclone.Fragment.ProfileFragment;
-import com.example.instagramclone.Model.User;
-import com.example.instagramclone.R;
+import com.example.picearn.Fragment.ProfileFragment;
+import com.example.picearn.Model.User;
+import com.example.picearn.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;

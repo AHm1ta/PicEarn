@@ -1,4 +1,4 @@
-package com.example.instagramclone;
+package com.example.picearn;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,8 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.instagramclone.Model.Post;
-import com.example.instagramclone.Model.User;
+import com.example.picearn.Model.User;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;

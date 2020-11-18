@@ -3,7 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/black"
     android:padding="@dimen/_5sdp"
     android:orientation="horizontal">
 
@@ -17,22 +16,25 @@
     <TextView
         android:id="@+id/profile_name"
         android:layout_marginStart="@dimen/_5sdp"
-        android:textColor="#fff"
+        android:textColor="#000"
         android:layout_toEndOf="@id/profile_img"
         android:layout_centerVertical="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:layout_toRightOf="@id/profile_img" />
 
     <Button
         android:id="@+id/follow"
-        android:background="@drawable/gradient2"
         android:layout_alignParentEnd="true"
-        android:textColor="#fff"
+        android:textColor="#000"
         android:textSize="@dimen/_10ssp"
+        android:textColorHint="@color/appbar"
         android:layout_centerVertical="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        android:layout_alignParentRight="true" />
 
 
 </RelativeLayout>

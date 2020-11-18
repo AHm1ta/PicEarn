@@ -1,22 +1,18 @@
-package com.example.instagramclone.Fragment;
+package com.example.picearn.Fragment;
 
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
-import android.view.PointerIcon;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
-import com.example.instagramclone.Adapter.PostAdapter;
-import com.example.instagramclone.Adapter.StoryAdapter;
-import com.example.instagramclone.Model.Post;
-import com.example.instagramclone.R;
+import com.example.picearn.Adapter.PostAdapter;
+import com.example.picearn.Model.Post;
+import com.example.picearn.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,8 +25,6 @@ import java.util.List;
 
 
 public class HomeFragment extends Fragment {
-    String[] s1;
-    int[] images ={R.drawable.img1,R.drawable.img2,R.drawable.img3,R.drawable.img4,R.drawable.img5,R.drawable.img6,R.drawable.img7,R.drawable.img8,R.drawable.img9,R.drawable.img10};
 
     private PostAdapter postAdapter;
     private List<Post> postLists;
@@ -49,26 +43,14 @@ public class HomeFragment extends Fragment {
         RecyclerView recyclerView2 = view.findViewById(R.id.recyclerView2);
         recyclerView2.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager= new LinearLayoutManager(getContext());
-//        linearLayoutManager.setReverseLayout(true);
-//        linearLayoutManager.setStackFromEnd(true);
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
         recyclerView2.setLayoutManager(linearLayoutManager);
         postLists= new ArrayList<>();
         postAdapter= new PostAdapter(getContext(),postLists);
         recyclerView2.setAdapter(postAdapter);
 
         checkFollowing();
-
-        s1=getContext().getResources().getStringArray(R.array.username);
-
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
-        StoryAdapter storyAdapter= new StoryAdapter(getContext(),s1,images);
-        recyclerView.setAdapter(storyAdapter);
-        recyclerView.setHasFixedSize(true);
-        LinearLayoutManager layoutManager= new LinearLayoutManager(getContext());
-        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        recyclerView.setLayoutManager(layoutManager);
-
-
         return view;
 
     }

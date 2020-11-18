@@ -1,4 +1,4 @@
-package com.example.instagramclone.Model;
+package com.example.picearn.Model;
 
 public class Post {
     private String postId;
